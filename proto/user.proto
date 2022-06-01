@@ -1,0 +1,19 @@
+syntax = "proto3";
+//protoc -I. --go_out=. --go-grpc_out=.  ./proto/user.proto
+package user;
+option go_package = "/pb";
+service User{
+    rpc UserNotification(UserRequest)returns(stream Notification){};
+    rpc GetUserInfo(stream UserRequest)returns(stream UserInfo){};
+}
+message UserRequest{
+    int64 Uid  = 1;
+}
+message Notification{
+    string Notification = 1;
+}
+message UserInfo{
+    string Name = 1;
+    int32 Age = 2;
+    string brief = 3;
+}

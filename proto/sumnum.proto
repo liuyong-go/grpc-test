@@ -1,0 +1,18 @@
+syntax = "proto3";
+//protoc -I. --go_out=. --go-grpc_out=.  ./proto/sumnum.proto
+package sumnum;
+option go_package = "/pb";
+service SumNum{
+    rpc SumTwoNums(SumTwoRequest)returns(SumReply){};
+    rpc SumNums(stream NumsRequest)returns(SumReply){};
+}
+message SumTwoRequest{
+    int64 num1 = 1;
+    int64 num2 = 2;
+}
+message SumReply{
+    int64 sumvalue = 1;
+}
+message NumsRequest{
+    int64 num = 1;
+}
